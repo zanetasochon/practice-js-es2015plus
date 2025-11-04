@@ -13,22 +13,21 @@ const getInputPriceValue = [...inputList].forEach((input) => {
 
     const calcButton = document.querySelector(".cart__btn-calculate");
 
-
+    const initialValue = 0
     const sumCalc = () => {
         //pobieram cene i umieszczm ją w tablicy po które będzie mozna iterować
         const arr = [...inputList].map((input) => {
           const { value, dataset } = input; 
           const sum = value * dataset.price 
           return  sum
-        })
+        }).reduce(
+          (accumulator, currentValue) => accumulator + currentValue,
+          initialValue,
+          );
 
-    const initialValue = 0
-    const sumWithInitial = arr.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    initialValue,
-    );
+   
   const totalPrice = document.querySelector(".cart__total-price")
-  totalPrice.innerHTML = `${sumWithInitial}`
+  totalPrice.innerHTML = `${arr}`
 }
 
 
